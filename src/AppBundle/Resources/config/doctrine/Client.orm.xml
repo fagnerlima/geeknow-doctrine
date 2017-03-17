@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="AppBundle\Repository\ClientRepository" name="AppBundle\Entity\Client">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO" />
+    </id>
+    <field name="name" type="string" column="name" length="100" />
+    <one-to-many target-entity="AppBundle\Entity\Account" mapped-by="client" field="accounts" fetch="EAGER" />
+    <field name="status" type="boolean" column="status" nullable="true" />
+    <field name="version" type="integer" column="version" version="true" />
+
+    <lifecycle-callbacks>
+      <lifecycle-callback type="postLoad" method="onPostLoad" />
+      <lifecycle-callback type="preRemove" method="onPreRemove" />
+      <lifecycle-callback type="postRemove" method="onPostRemove" />
+      <lifecycle-callback type="prePersist" method="onPrePersist" />
+      <lifecycle-callback type="postPersist" method="onPostPersist" />
+      <lifecycle-callback type="preUpdate" method="onPreUpdate" />
+      <lifecycle-callback type="postUpdate" method="onPostUpdate" />
+      <lifecycle-callback type="preFlush" method="onPreFlush" />
+    </lifecycle-callbacks>
+  </entity>
+</doctrine-mapping>
