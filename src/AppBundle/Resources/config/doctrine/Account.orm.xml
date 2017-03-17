@@ -12,6 +12,6 @@
     </many-to-one>
     <field name="balance" type="decimal" column="balance" precision="10" scale="2"/>
     <field name="status" type="boolean" column="status" nullable="true" />
-    <field name="version" type="integer" column="version" version="true" />
+    <field name="version" type="integer" column="version" nullable="false" version="true" />
   </entity>
 </doctrine-mapping>

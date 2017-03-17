@@ -115,6 +115,7 @@ class Client
     {
         dump('onPrePersist');
         $this->status = $this->status ?? true;
+        $this->version = 1;
     }
 
     public function onPostPersist()

@@ -10,7 +10,7 @@
     <field name="name" type="string" column="name" length="100" />
     <one-to-many target-entity="AppBundle\Entity\Account" mapped-by="client" field="accounts" fetch="EAGER" />
     <field name="status" type="boolean" column="status" nullable="true" />
-    <field name="version" type="integer" column="version" version="true" />
+    <field name="version" type="integer" column="version" nullable="false" version="true" />
 
     <lifecycle-callbacks>
       <lifecycle-callback type="postLoad" method="onPostLoad" />
