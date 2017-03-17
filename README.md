@@ -1,6 +1,6 @@
-#VOX GeekNow
+# VOX GeekNow
 
-##Doctrine 2 - Advanced Techniques
+## Doctrine 2 - Advanced Techniques
 
 **Date:** March 17, 2017
 
