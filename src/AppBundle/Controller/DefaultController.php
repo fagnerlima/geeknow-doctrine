@@ -27,21 +27,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        // EntityManager and Repositories
-        $connection = $this->getDoctrine()->getConnection('default');
-        $connection2 = $this->getDoctrine()->getConnection('other');
-        $entityManager = $this->getDoctrine()->getManager('default');
-        $entityManager2 = $this->getDoctrine()->getManager('other');
-        $accountRepository = $entityManager->getRepository(Account::class);
-        $accountRepository2 = $entityManager2->getRepository(Account::class);
-        $clientRepository = $entityManager->getRepository(Client::class);
-        $clientRepository2 = $entityManager2->getRepository(Client::class);
-
-        // findAll()
-//        $accounts = $accountRepository->findAll();
-//        $clients = $clientRepository->findAll();
-//        dump($accounts, $clients);
-
+        dump('homepage');
         die;
     }
 
@@ -58,7 +44,11 @@ class DefaultController extends Controller
 
         $client = $entityManager->getRepository(Client::class)->find(6);
         $client->setName('Test 3');
-        $client->setStatus(true);
+        $client->setStatus(false);
+
+//        $client = new Client();
+//        $client->setName('Test');
+//        $client->setStatus(false);
 
         $client = $entityManager->merge($client);
         $entityManager->flush();
@@ -136,7 +126,7 @@ class DefaultController extends Controller
         $queryBuilder = $entityManager->getRepository(Client::class)
             ->createQueryBuilder('cli');
         $clients = $queryBuilder->getQuery()->getResult();
-//        $client = $entityManager->getRepository(Client::class)->findAll();
+//        $clients = $entityManager->getRepository(Client::class)->findAll();
 
         dump('filters', $clients);
 
@@ -179,17 +169,19 @@ class DefaultController extends Controller
     {
         $entityManager = $this->getDoctrine()->getManager();
 
+        // Update
         $skill = $entityManager->getRepository(Skill::class)->find(2);
         $skill->setName('Angular 2');
         $skill = $entityManager->merge($skill);
         $entityManager->flush();
         dump($skill);
 
-//        $newSkill = new Skill();
-//        $newSkill->setName('Java');
-//        $newSkill = $entityManager->merge($newSkill);
-//        $entityManager->flush();
-//        dump($newSkill);
+        // Persist
+        $newSkill = new Skill();
+        $newSkill->setName('PostgreSQL');
+        $newSkill = $entityManager->merge($newSkill);
+        $entityManager->flush();
+        dump($newSkill);
 
         die;
     }

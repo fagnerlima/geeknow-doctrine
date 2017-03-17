@@ -10,13 +10,13 @@ use Doctrine\ORM\Query\Filter\SQLFilter;
  */
 class StatusFilter extends SQLFilter
 {
-    const ACTIVE   = 1,
-          INACTIVE = 0;
+    const ACTIVE   = true,
+          INACTIVE = false;
 
     /**
-     * @var int
+     * @var bool
      */
-    private $status = 1;
+    private $status = true;
 
     /**
      * Gets the SQL query part to add to a query.
@@ -36,13 +36,13 @@ class StatusFilter extends SQLFilter
             throw new \InvalidArgumentException('Does not have the status field.');
         }
 
-        return sprintf('%s.%s = %s', $targetTableAlias, 'status', $this->status);
+        return sprintf('%s.%s = %s', $targetTableAlias, 'status', $this->status ? 'true' : 'false');
     }
 
     /**
-     * @param int $status One of the StatusFilter::* constants
+     * @param bool $status One of the StatusFilter::* constants
      */
-    public function setStatus(int $status)
+    public function setStatus(bool $status)
     {
         $this->status = $status;
     }
